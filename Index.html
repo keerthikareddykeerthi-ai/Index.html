@@ -1,0 +1,294 @@
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java 2D Array Operations</title><style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        background: #f4f6f8;
+        color: #222;
+        padding: 20px;
+    }
+
+    .container {
+        max-width: 1000px;
+        margin: auto;
+    }
+
+    header {
+        background: #222;
+        color: white;
+        padding: 30px;
+        border-radius: 15px;
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+    header h1 {
+        margin-bottom: 10px;
+    }
+
+    .card {
+        background: white;
+        padding: 25px;
+        border-radius: 15px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    h2 {
+        margin-bottom: 15px;
+        color: #333;
+    }
+
+    pre {
+        background: #1e1e1e;
+        color: #f8f8f2;
+        padding: 20px;
+        border-radius: 10px;
+        overflow-x: auto;
+        line-height: 1.6;
+        font-size: 14px;
+    }
+
+    .output {
+        background: #111;
+        color: #00ff88;
+    }
+
+    .matrices {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .matrix {
+        text-align: center;
+        background: #f8f9fa;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    .matrix table {
+        margin: auto;
+        border-collapse: collapse;
+    }
+
+    .matrix td {
+        border: 1px solid #ccc;
+        padding: 12px 20px;
+        font-weight: bold;
+    }
+
+    ul {
+        line-height: 2;
+        padding-left: 25px;
+    }
+
+    footer {
+        text-align: center;
+        padding: 20px;
+        color: #666;
+    }
+
+    @media (max-width: 600px) {
+        .matrices {
+            grid-template-columns: 1fr;
+        }
+
+        body {
+            padding: 10px;
+        }
+
+        .card {
+            padding: 15px;
+        }
+
+        pre {
+            font-size: 12px;
+        }
+    }
+</style>
+
+</head><body><div class="container"><header>
+    <h1>☕ Java 2D Array Operations</h1>
+    <p>Matrix Addition • Subtraction • Multiplication • Division</p>
+</header>
+
+<div class="card">
+    <h2>📊 Input Matrices</h2>
+
+    <div class="matrices">
+
+        <div class="matrix">
+            <h3>Matrix A</h3>
+            <br>
+            <table>
+                <tr>
+                    <td>8</td>
+                    <td>6</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>2</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="matrix">
+            <h3>Matrix B</h3>
+            <br>
+            <table>
+                <tr>
+                    <td>4</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>1</td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+<div class="card">
+    <h2>💻 Java Code</h2>
+
+<pre><code>public class TwoDArrayOperations {
+
+    public static void main(String[] args) {
+
+        int[][] matrixA = {
+            {8, 6},
+            {4, 2}
+        };
+
+        int[][] matrixB = {
+            {4, 2},
+            {2, 1}
+        };
+
+        int rows = matrixA.length;
+        int cols = matrixA[0].length;
+
+        int[][] sum = new int[rows][cols];
+        int[][] sub = new int[rows][cols];
+        double[][] div = new double[rows][cols];
+        int[][] mul = new int[rows][cols];
+
+        // Addition, Subtraction and Division
+        for (int i = 0; i &lt; rows; i++) {
+
+            for (int j = 0; j &lt; cols; j++) {
+
+                sum[i][j] =
+                    matrixA[i][j] + matrixB[i][j];
+
+                sub[i][j] =
+                    matrixA[i][j] - matrixB[i][j];
+
+                div[i][j] =
+                    (double) matrixA[i][j] / matrixB[i][j];
+            }
+        }
+
+        // Matrix Multiplication
+        for (int i = 0; i &lt; rows; i++) {
+
+            for (int j = 0; j &lt; cols; j++) {
+
+                for (int k = 0; k &lt; cols; k++) {
+
+                    mul[i][j] +=
+                        matrixA[i][k] * matrixB[k][j];
+                }
+            }
+        }
+
+        // Display results
+        System.out.println("--- Addition ---");
+
+        for (int i = 0; i &lt; rows; i++) {
+            for (int j = 0; j &lt; cols; j++) {
+                System.out.print(sum[i][j] + " ");
+            }
+            System.out.println();
+        }
+
+        System.out.println("--- Subtraction ---");
+
+        for (int i = 0; i &lt; rows; i++) {
+            for (int j = 0; j &lt; cols; j++) {
+                System.out.print(sub[i][j] + " ");
+            }
+            System.out.println();
+        }
+
+        System.out.println("--- Multiplication ---");
+
+        for (int i = 0; i &lt; rows; i++) {
+            for (int j = 0; j &lt; cols; j++) {
+                System.out.print(mul[i][j] + " ");
+            }
+            System.out.println();
+        }
+
+        System.out.println("--- Division ---");
+
+        for (int i = 0; i &lt; rows; i++) {
+            for (int j = 0; j &lt; cols; j++) {
+                System.out.printf("%.2f ", div[i][j]);
+            }
+            System.out.println();
+        }
+    }
+}</code></pre></div>
+
+<div class="card">
+    <h2>🖥️ Output</h2>
+
+<pre class="output">--- Addition ---
+12 8
+6 3
+
+--- Subtraction ---
+4 4
+2 1
+
+--- Multiplication ---
+44 22
+20 10
+
+--- Division ---
+2.00 3.00
+2.00 2.00</pre></div>
+
+<div class="card">
+    <h2>📚 Concepts Used</h2>
+
+    <ul>
+        <li>Java 2D Arrays</li>
+        <li>Nested for Loops</li>
+        <li>Matrix Addition</li>
+        <li>Matrix Subtraction</li>
+        <li>Matrix Multiplication</li>
+        <li>Element-wise Division</li>
+        <li>Array Indexing</li>
+        <li>printf() Formatting</li>
+    </ul>
+</div>
+
+<footer>
+    <p>Java Programming Practice | 2D Array Operations</p>
+</footer>
+
+</div></body>
+</html>
